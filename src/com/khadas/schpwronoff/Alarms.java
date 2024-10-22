@@ -447,7 +447,7 @@ public class Alarms {
         out.setDataPosition(0);
         intent.putExtra(ALARM_RAW_DATA, out.marshall());
 
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
     Log.d(TAG, "Alarms.enableAlertPowerOff(): setAlert id " + alarm.mId + " atTime " + atTimeInMillis);
        am.setExact(AlarmManager.RTC_WAKEUP, atTimeInMillis, sender); 
@@ -467,7 +467,7 @@ public class Alarms {
     static void disableAlert(Context context) {
         Intent intent = new Intent(context, com.khadas.schpwronoff.SchPwrOffReceiver.class);
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         Log.d(TAG, "Alarms.disableAlertPowerOff(): disableForPowerOff");
         am.cancel(sender);
         // setStatusBarIcon(context, false);
@@ -519,7 +519,7 @@ public class Alarms {
         out.setDataPosition(0);
         intent.putExtra(ALARM_RAW_DATA, out.marshall());
 
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 		/* yangjinqing need add the function for write rtc */
        //am.setExact(7, atTimeInMillis, sender);
@@ -544,7 +544,7 @@ public class Alarms {
     static void disableAlertPowerOn(Context context) {
         Intent intent = new Intent(context, com.khadas.schpwronoff.SchPwrOnReceiver.class);
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         /*yangjinqing need to add the function for write rtc*/
        // am.setExact(7, 0, sender);
 		BootAlarmInfo info =new BootAlarmInfo(false,0,false);
